@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) UIImageView *mediaImageView;
 @property (nonatomic, strong) UILabel *usernameAndCaptionLabel;
+@property (nonatomic, strong) UILabel *commentLabel;
 
 @end
 
@@ -92,17 +93,26 @@ static NSParagraphStyle *paragraphStyle;
         // Make a string that says "username comment" followed by a line break
         NSString *baseString = [NSString stringWithFormat:@"%@ %@\n", comment.from.userName, comment.text];
         
+        NSMutableAttributedString *oneCommentString = [[NSMutableAttributedString alloc]init];
         // Make an attributed string, with the "username" bold
-        NSMutableAttributedString *oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle}];
+        if ([self.mediaItem.comments indexOfObject:comment]%2 == 0) {
+            NSMutableParagraphStyle *rightAlignStyle = [[NSMutableParagraphStyle alloc]init];
+            rightAlignStyle.alignment = 2;
+            rightAlignStyle.paragraphSpacingBefore = 5;
+            oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : rightAlignStyle}];
+        } else {
+            oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle}];
+        }
         
         NSRange usernameRange = [baseString rangeOfString:comment.from.userName];
         [oneCommentString addAttribute:NSFontAttributeName value:boldFont range:usernameRange];
         [oneCommentString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
         [commentString appendAttributedString:oneCommentString];
+        
+        if ([self.mediaItem.comments indexOfObject:comment] == 0) {
+            [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:[baseString rangeOfString:comment.text]];
+        }
     }
-    // This line crashes the program
-    [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:[[commentString string]rangeOfString:self.mediaItem.comments[0]]];
-    
     return commentString;
 }
 
