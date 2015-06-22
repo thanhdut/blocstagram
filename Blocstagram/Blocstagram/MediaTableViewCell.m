@@ -15,7 +15,6 @@
 
 @property (nonatomic, strong) UIImageView *mediaImageView;
 @property (nonatomic, strong) UILabel *usernameAndCaptionLabel;
-@property (nonatomic, strong) UILabel *commentLabel;
 
 @end
 
@@ -78,6 +77,7 @@ static NSParagraphStyle *paragraphStyle;
     NSString *baseString = [NSString stringWithFormat:@"%@ %@", self.mediaItem.user.userName, self.mediaItem.caption];
     // Make an attributed string, with the "username" bold
     NSMutableAttributedString *mutableUsernameAndCaptionString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : [lightFont fontWithSize:usernameFontSize], NSParagraphStyleAttributeName : paragraphStyle}];
+    [mutableUsernameAndCaptionString addAttribute:NSKernAttributeName value:@3 range:NSMakeRange(0, [mutableUsernameAndCaptionString length])];
     NSRange usernameRange = [baseString rangeOfString:self.mediaItem.user.userName];
     [mutableUsernameAndCaptionString addAttribute:NSFontAttributeName value:[boldFont fontWithSize:usernameFontSize] range:usernameRange];
     [mutableUsernameAndCaptionString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
@@ -98,9 +98,10 @@ static NSParagraphStyle *paragraphStyle;
         NSRange usernameRange = [baseString rangeOfString:comment.from.userName];
         [oneCommentString addAttribute:NSFontAttributeName value:boldFont range:usernameRange];
         [oneCommentString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
-        
         [commentString appendAttributedString:oneCommentString];
     }
+    // This line crashes the program
+    [commentString addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:[[commentString string]rangeOfString:self.mediaItem.comments[0]]];
     
     return commentString;
 }
