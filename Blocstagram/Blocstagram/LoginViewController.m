@@ -38,7 +38,7 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [self.webView loadRequest:request];
     }
-    self.backButton = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+    self.backButton = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonFired)];
         self.backButton.enabled = self.webView.canGoBack;
         self.navigationItem.leftBarButtonItem = self.backButton;
 }
@@ -89,6 +89,10 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     }
     
     return YES;
+}
+
+- (void) backButtonFired {
+    [self.webView goBack];
 }
 
 - (void) updateBackButton {
