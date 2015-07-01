@@ -8,10 +8,12 @@
 
 #import "LoginViewController.h"
 #import "DataSource.h"
+#import <WebKit/WebKit.h>
 
-@interface LoginViewController () <UIWebViewDelegate>
+@interface LoginViewController () <WKNavigationDelegate>
 
-@property (nonatomic, weak) UIWebView *webView;
+@property (nonatomic, weak) WKWebView *webView;
+@property UIBarButtonItem *backButton;
 
 @end
 
@@ -22,11 +24,10 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIWebView *webView = [[UIWebView alloc] init];
-    webView.delegate = self;
-    
+    WKWebView *webView = [[WKWebView alloc] init];
     [self.view addSubview:webView];
     self.webView = webView;
+    self.webView.navigationDelegate = self;
     
     self.title = NSLocalizedString(@"Login", @"Login");
     
@@ -37,6 +38,9 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [self.webView loadRequest:request];
     }
+    self.backButton = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+        self.backButton.enabled = self.webView.canGoBack;
+        self.navigationItem.leftBarButtonItem = self.backButton;
 }
 
 - (void) dealloc {
@@ -44,7 +48,7 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     [self clearInstagramCookies];
     
     // see https://developer.apple.com/library/ios/documentation/uikit/reference/UIWebViewDelegate_Protocol/Reference/Reference.html#//apple_ref/doc/uid/TP40006951-CH3-DontLinkElementID_1
-    self.webView.delegate = nil;
+    self.webView.navigationDelegate = nil;
 }
 
 /**
@@ -86,5 +90,18 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     
     return YES;
 }
+
+- (void) updateBackButton {
+    self.backButton.enabled = self.webView.canGoBack;
+}
+
+- (void) webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    [self updateBackButton];
+}
+
+- (void) webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [self updateBackButton];
+}
+
 
 @end
