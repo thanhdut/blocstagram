@@ -5,20 +5,20 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>88E39627-19C2-4A79-90D3-6F021C59638C</string>
+	<string>0288AF98-FE4E-409A-BA22-255AC5A74B5C</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Blocstagram</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>6C8ADD3CF3018CC3E1E257BCF280F7F9EBBD9304</key>
 		<string>https://github.com/thanhdut/blocstagram.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Blocstagram/Blocstagram.xcodeproj/project.xcworkspace</string>
+	<string>Blocstagram/Blocstagram.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>6C8ADD3CF3018CC3E1E257BCF280F7F9EBBD9304</key>
-		<string>../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/thanhdut/blocstagram.git</string>
