@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71103C431B45E36D008776D5 /* MediaFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71103C421B45E36D008776D5 /* MediaFullScreenViewController.m */; };
 		71DF00211B407F56002D5C4B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DF00201B407F56002D5C4B /* LoginViewController.m */; };
 		71EAEA451B3330870039B302 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EAEA441B3330870039B302 /* User.m */; };
 		71EAEA481B3330EA0039B302 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EAEA471B3330EA0039B302 /* Media.m */; };
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		2B2A2FD6D9E7469F37F3A6E9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E0A304CBB975B174484B629 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		71103C411B45E36D008776D5 /* MediaFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFullScreenViewController.h; sourceTree = "<group>"; };
+		71103C421B45E36D008776D5 /* MediaFullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaFullScreenViewController.m; sourceTree = "<group>"; };
 		71DF001F1B407F56002D5C4B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		71DF00201B407F56002D5C4B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		71EAEA431B3330870039B302 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				71DF00201B407F56002D5C4B /* LoginViewController.m */,
 				71EAEA4F1B339F820039B302 /* MediaTableViewCell.h */,
 				71EAEA501B339F820039B302 /* MediaTableViewCell.m */,
+				71103C411B45E36D008776D5 /* MediaFullScreenViewController.h */,
+				71103C421B45E36D008776D5 /* MediaFullScreenViewController.m */,
 				71EB10E31B30BE9C00FA9B2D /* Images.xcassets */,
 				71EB10E51B30BE9C00FA9B2D /* LaunchScreen.xib */,
 				71EB10D61B30BE9C00FA9B2D /* Supporting Files */,
@@ -352,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71103C431B45E36D008776D5 /* MediaFullScreenViewController.m in Sources */,
 				71EAEA451B3330870039B302 /* User.m in Sources */,
 				71EAEA4B1B3331350039B302 /* Comment.m in Sources */,
 				71EAEA511B339F820039B302 /* MediaTableViewCell.m in Sources */,
