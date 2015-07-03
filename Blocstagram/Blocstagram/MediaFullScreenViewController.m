@@ -14,6 +14,7 @@
 @property (nonatomic, strong) Media *media;
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
+@property (nonatomic, strong) UIButton *shareButton;
 
 @end
 
@@ -55,6 +56,13 @@
     
     [self.scrollView addGestureRecognizer:self.tap];
     [self.scrollView addGestureRecognizer:self.doubleTap];
+    
+    self.shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.shareButton setTitle:@"Share" forState:UIControlStateNormal];
+    [self.shareButton addTarget:self action:@selector(shareButtonFired) forControlEvents:UIControlEventTouchUpInside];
+    self.shareButton.frame = CGRectMake(self.view.bounds.size.width*.8, 0, 50, 50);
+    [self.scrollView addSubview:self.shareButton];
+    
 }
 
 - (void) viewWillLayoutSubviews {
@@ -136,6 +144,23 @@
         [self.scrollView zoomToRect:CGRectMake(x, y, width, height) animated:YES];
     } else {
         [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES];
+    }
+}
+
+- (void) shareButtonFired {
+    NSMutableArray *itemsToShare = [NSMutableArray array];
+    
+    if (self.media.caption.length > 0) {
+        [itemsToShare addObject:self.media.caption];
+    }
+    
+    if (self.media.image) {
+        [itemsToShare addObject:self.media.image];
+    }
+    
+    if (itemsToShare.count > 0) {
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+        [self presentViewController:activityVC animated:YES completion:nil];
     }
 }
 
